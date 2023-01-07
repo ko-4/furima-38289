@@ -39,8 +39,8 @@ Things you may want to cover:
 | first_name_kana    | string     | null: false                     |
 | birthday           | date       | null: false                     |
 
-has_many  items
-has_many  buy_records
+has_many  :items
+has_many  :buy_records
 
 ## items テーブル
 
@@ -49,15 +49,15 @@ has_many  buy_records
 | user               | references | null: false , foreign_key: true |
 | item_name          | string     | null: false                     |
 | item_info          | text       | null: false                     |
-| category_id        | int        | null: false                     |
-| status_id          | int        | null: false                     |
-| load_id            | int        | null: false                     |
-| prefecture_id      | int        | null: false                     |
-| shipment_id        | int        | null: false                     |
+| category_id        | integer    | null: false                     |
+| status_id          | integer    | null: false                     |
+| load_id            | integer    | null: false                     |
+| prefecture_id      | integer    | null: false                     |
+| shipment_id        | integer    | null: false                     |
 | item_place         | integer    | null: false                     |
 
-belongs_to user
-has_one buy_record
+belongs_to :user
+has_one :buy_record
 
 
 ## buy_records(購入記録) テーブル
@@ -67,20 +67,20 @@ has_one buy_record
 | user               | references | null: false, foreign_key: true  |
 | item               | references | null: false, foreign_key: true  |
 
-belongs_to user
-belongs_to item
-has_one shipping_address
+belongs_to :user
+belongs_to :item
+has_one :shipping_address
 
 ## shipping_address(発送先) テーブル
 
 | Column             | Type       | Options                         |
 | ------------------ | ---------- | ------------------------------- |
 | post_num           | string     | null: false                     |
-| prefecture_id      | int        | null: false                     |
+| prefecture_id      | integer    | null: false                     |
 | municipalities     | string     | null: false                     |
 | address            | string     | null: false                     |
 | building           | string     |                                 |
 | tell               | string     | null: false                     |
 | buy_record         | references | null: false, foreign_key: true  |
 
-belongs_to buy_record
+belongs_to :buy_record
